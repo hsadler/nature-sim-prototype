@@ -1,0 +1,20 @@
+
+
+Tile states:
+    - earth type
+    - elevation
+    - heat
+    - water
+
+Dynamic natural forces:
+    - day/night cycle:
+        - light rays
+        - heat
+    - weather:
+        - rain
+        - heat
+    - erosion:
+        - alter elevation
+    - geo activity:
+        - alter elevation
+        - change earth type

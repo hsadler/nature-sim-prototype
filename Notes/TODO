@@ -1,0 +1,23 @@
+
+TODO:
+
+V1:
+    - test proceedural generation of environment tiles
+    - create player character
+    - create zoomable camera
+    - create environment tile state
+    - test proceedural generation of environment with different tile states
+    - create mouseover tile to show state
+    - design tile visual changes to represent state
+
+V2:
+    - add day/night cycle
+
+V3:
+    - add water cycle (rain)
+
+V4:
+    - add erosion
+
+V5:
+    - add geo activity
