@@ -2,9 +2,9 @@
 TODO:
 
 V1:
-    - test proceedural generation of environment tiles
+    X test proceedural generation of environment tiles
     - create player character
-    - create zoomable camera
+    - create movable, zoomable camera
     - create environment tile state
     - test proceedural generation of environment with different tile states
     - create mouseover tile to show state

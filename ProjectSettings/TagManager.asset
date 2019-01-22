@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Earth
+    uniqueID: 3043921697
+    locked: 0
+  - name: Water
+    uniqueID: 1830675683
+    locked: 0
+  - name: Player
+    uniqueID: 2163871135
+    locked: 0
+  - name: Weather
+    uniqueID: 1128561127
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
