@@ -20,24 +20,26 @@ public class MainCameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: fix bugs in these calls
         CheckPosition();
         CheckZoom();
     }
 
     void CheckPosition() {
-        
+        transform.position += Vector3.left * player.transform.position.x; 
+        transform.position += Vector3.up * player.transform.position.y;   
     }
 
     void CheckZoom() {
         // calculate the zoom
         float newZoomDiff = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        transform.localPosition += Vector3.forward * newZoomDiff;
+        transform.position += Vector3.forward * newZoomDiff;
         // apply min and max to zoom
-        if(transform.localPosition.z > zoomMinDistance) {
-            transform.localPosition = Vector3.forward * zoomMinDistance;
+        if(transform.position.z > zoomMinDistance) {
+            transform.position += Vector3.forward * zoomMinDistance;
         }
-        else if(transform.localPosition.z < zoomMaxDistance) {
-            transform.localPosition = Vector3.forward * zoomMaxDistance;
+        else if(transform.position.z < zoomMaxDistance) {
+            transform.position += Vector3.forward * zoomMaxDistance;
         }
     }
 
