@@ -23,12 +23,12 @@ public class EnvironmentTileControl : MonoBehaviour
         // TODO:
             // - set the neighbors
 
-        // test: dynamically set sprite to dirt or dryDirt
-        if(Random.value > 0.5) {
-            GetComponent<SpriteRenderer>().sprite = EnvironmentSpriteList.instance.dirt;
-        } else {
-            GetComponent<SpriteRenderer>().sprite = EnvironmentSpriteList.instance.dryDirt;
-        }
+        // test: dynamically set sprite to random earth sprite
+        List<Sprite> earthSpriteList = EnvironmentSpriteList.instance.earthSpriteList;
+        Sprite randEarth = earthSpriteList[
+            Random.Range(0, earthSpriteList.Count)
+        ];
+        GetComponent<SpriteRenderer>().sprite = randEarth;
     }
 
     // Update is called once per frame

@@ -306,6 +306,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirt: {fileID: 21300000, guid: 8cb1ee4728a7569479cd2352a7138db6, type: 3}
   dryDirt: {fileID: 21300000, guid: 33533471ceb133a4ba7c712390dfb38d, type: 3}
+  iceDirt: {fileID: 21300000, guid: d76512ac42859cb4b94bb5d8a5d78407, type: 3}
+  grass: {fileID: 21300000, guid: 84244574418b077418b35436f9fb10bb, type: 3}
+  grassPebbles: {fileID: 21300000, guid: caa9a4fd858fb1b4d817a6a0b8ed6bf1, type: 3}
+  dryGrass: {fileID: 21300000, guid: f8e94d8f7c6b1f74a9e190c0c2ba345b, type: 3}
+  dryGrassMushrooms: {fileID: 21300000, guid: 030fc99e9420c2f46a5d3c3abead93eb, type: 3}
+  sand: {fileID: 21300000, guid: 16010ecd360dfd645a6042aaa0209eaf, type: 3}
+  drySand: {fileID: 21300000, guid: d1e4d3dfd9a92da47b536afe9bcbda75, type: 3}
+  water: {fileID: 21300000, guid: 681a183397409de44a2d0b00829a8693, type: 3}
+  snow: {fileID: 21300000, guid: 9f75245851157be4b99cfc0723ecb2ba, type: 3}
+  ice: {fileID: 21300000, guid: 249d8912156d5b347877e149fa8fff53, type: 3}
+  earthSpriteList: []
+  waterSpriteList: []
 --- !u!1 &1160964468
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 83969270}
-  zoomSpeed: 3
+  zoomSpeed: 5
   zoomMinDistance: -2
   zoomMaxDistance: -20
