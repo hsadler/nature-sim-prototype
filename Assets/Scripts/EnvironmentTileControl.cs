@@ -16,8 +16,6 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject neighborRight;
     public GameObject neighborDown;
     public GameObject neighborLeft;
-
-    public Sprite Dirt;
     
     // Start is called before the first frame update
     void Start()
@@ -25,8 +23,12 @@ public class EnvironmentTileControl : MonoBehaviour
         // TODO:
             // - set the neighbors
 
-        // test: dynamically set sprite to Dirt
-        GetComponent<SpriteRenderer>().sprite = Dirt;
+        // test: dynamically set sprite to dirt or dryDirt
+        if(Random.value > 0.5) {
+            GetComponent<SpriteRenderer>().sprite = EnvironmentSpriteList.instance.dirt;
+        } else {
+            GetComponent<SpriteRenderer>().sprite = EnvironmentSpriteList.instance.dryDirt;
+        }
     }
 
     // Update is called once per frame
