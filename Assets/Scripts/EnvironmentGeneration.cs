@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnvironmentGeneration : MonoBehaviour
+public class EnvironmentGeneration : MonoBehaviour
 {
     
     public GameObject environmentTilePrefab;
@@ -13,6 +13,25 @@ public class TestEnvironmentGeneration : MonoBehaviour
     
     public int tilesWidth;
     public int tilesHeight;
+
+    
+    // the static reference to the singleton instance
+    public static EnvironmentGeneration instance { get; private set; }
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        // singleton pattern
+        if(instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+    
 
     // Start is called before the first frame update
     void Start()

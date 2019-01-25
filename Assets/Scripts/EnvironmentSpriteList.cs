@@ -28,6 +28,7 @@ public class EnvironmentSpriteList : MonoBehaviour
     // the static reference to the singleton instance
     public static EnvironmentSpriteList instance { get; private set; }
 
+    
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
