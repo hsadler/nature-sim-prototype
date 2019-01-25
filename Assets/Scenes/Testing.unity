@@ -112,6 +112,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &74103812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74103813}
+  - component: {fileID: 74103814}
+  m_Layer: 0
+  m_Name: EnvironmentSpriteList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74103813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74103812}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 527522443}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74103814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74103812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec17a863ad8493488d4208c646547db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirt: {fileID: 21300000, guid: 8cb1ee4728a7569479cd2352a7138db6, type: 3}
+  dryDirt: {fileID: 21300000, guid: 33533471ceb133a4ba7c712390dfb38d, type: 3}
+  iceDirt: {fileID: 21300000, guid: d76512ac42859cb4b94bb5d8a5d78407, type: 3}
+  grass: {fileID: 21300000, guid: 84244574418b077418b35436f9fb10bb, type: 3}
+  grassPebbles: {fileID: 21300000, guid: caa9a4fd858fb1b4d817a6a0b8ed6bf1, type: 3}
+  dryGrass: {fileID: 21300000, guid: f8e94d8f7c6b1f74a9e190c0c2ba345b, type: 3}
+  dryGrassMushrooms: {fileID: 21300000, guid: 030fc99e9420c2f46a5d3c3abead93eb, type: 3}
+  sand: {fileID: 21300000, guid: 16010ecd360dfd645a6042aaa0209eaf, type: 3}
+  drySand: {fileID: 21300000, guid: d1e4d3dfd9a92da47b536afe9bcbda75, type: 3}
+  water: {fileID: 21300000, guid: 681a183397409de44a2d0b00829a8693, type: 3}
+  snow: {fileID: 21300000, guid: 9f75245851157be4b99cfc0723ecb2ba, type: 3}
+  ice: {fileID: 21300000, guid: 249d8912156d5b347877e149fa8fff53, type: 3}
+  earthSpriteList: []
+  waterSpriteList: []
 --- !u!1 &83969270
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +183,7 @@ GameObject:
   - component: {fileID: 83969273}
   - component: {fileID: 83969272}
   m_Layer: 0
-  m_Name: PlayerPlaceholder
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,6 +301,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &527522442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 527522443}
+  m_Layer: 0
+  m_Name: SceneManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &527522443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527522442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 939354647}
+  - {fileID: 74103813}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939354645
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +343,8 @@ GameObject:
   m_Component:
   - component: {fileID: 939354647}
   - component: {fileID: 939354646}
-  - component: {fileID: 939354648}
   m_Layer: 0
-  m_Name: TestingSceneManager
+  m_Name: EnvironmentGeneration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,6 +364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environmentTilePrefab: {fileID: 5538146844728269027, guid: 5bdb2067368017949bfcd52da204dc3f,
     type: 3}
+  environmentTileContainer: {fileID: 1009099065}
+  environmentTiles: []
   tilesWidth: 100
   tilesHeight: 100
 --- !u!4 &939354647
@@ -285,39 +375,43 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939354645}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 527522443}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1009099065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009099066}
+  m_Layer: 0
+  m_Name: EnvironmentTileContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1009099066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009099065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &939354648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939354645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec17a863ad8493488d4208c646547db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dirt: {fileID: 21300000, guid: 8cb1ee4728a7569479cd2352a7138db6, type: 3}
-  dryDirt: {fileID: 21300000, guid: 33533471ceb133a4ba7c712390dfb38d, type: 3}
-  iceDirt: {fileID: 21300000, guid: d76512ac42859cb4b94bb5d8a5d78407, type: 3}
-  grass: {fileID: 21300000, guid: 84244574418b077418b35436f9fb10bb, type: 3}
-  grassPebbles: {fileID: 21300000, guid: caa9a4fd858fb1b4d817a6a0b8ed6bf1, type: 3}
-  dryGrass: {fileID: 21300000, guid: f8e94d8f7c6b1f74a9e190c0c2ba345b, type: 3}
-  dryGrassMushrooms: {fileID: 21300000, guid: 030fc99e9420c2f46a5d3c3abead93eb, type: 3}
-  sand: {fileID: 21300000, guid: 16010ecd360dfd645a6042aaa0209eaf, type: 3}
-  drySand: {fileID: 21300000, guid: d1e4d3dfd9a92da47b536afe9bcbda75, type: 3}
-  water: {fileID: 21300000, guid: 681a183397409de44a2d0b00829a8693, type: 3}
-  snow: {fileID: 21300000, guid: 9f75245851157be4b99cfc0723ecb2ba, type: 3}
-  ice: {fileID: 21300000, guid: 249d8912156d5b347877e149fa8fff53, type: 3}
-  earthSpriteList: []
-  waterSpriteList: []
 --- !u!1 &1160964468
 GameObject:
   m_ObjectHideFlags: 0
