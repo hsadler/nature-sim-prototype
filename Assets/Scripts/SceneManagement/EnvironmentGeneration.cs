@@ -5,17 +5,20 @@ using UnityEngine;
 public class EnvironmentGeneration : MonoBehaviour
 {
     
+    // RESPONSIBLE FOR PROCEDURAL ENVIRONMENT GENERATION
+
+    // game object references
     public GameObject environmentTilePrefab;
     public GameObject environmentTileContainer;
-
-    public IDictionary<int[], GameObject> coordToEnvironmentTile = new Dictionary<int[], GameObject>();
-    public List<GameObject> environmentTiles = new List<GameObject>();
     
+    // script references
+    private EnvironmentTiles eTiles;
+    
+    // config
     public int tilesWidth;
     public int tilesHeight;
-
     
-    // the static reference to the singleton instance
+    // static reference to the singleton instance
     public static EnvironmentGeneration instance { get; private set; }
 
     /// <summary>
@@ -31,12 +34,15 @@ public class EnvironmentGeneration : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
 
     // Start is called before the first frame update
     void Start()
     {
+        // set references
+        eTiles = EnvironmentTiles.instance;
+        // generate the map
         GenerateMap();
+        eTiles.SetNeighborsForTiles();
     }
 
     void GenerateMap() {
@@ -56,10 +62,10 @@ public class EnvironmentGeneration : MonoBehaviour
                     environmentTileContainer.transform
                 );
                 // add to coordinates -> tile dictionary
-                int[] coords = {x, y};
-                coordToEnvironmentTile.Add(coords, newTile);
+                string coordsKey = eTiles.GetFormattedCoordinateFromTile(newTile);
+                eTiles.coordToEnvironmentTile.Add(coordsKey, newTile);
                 // add to tile list
-                environmentTiles.Add(newTile); 
+                eTiles.environmentTiles.Add(newTile); 
             }
         }
     }

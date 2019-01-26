@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnvironmentSpriteList : MonoBehaviour
 {
 
+    // SIMPLY HOLDS SPRITE TYPES FOR THE GAME ENVIRONMENT
+
     // environment earth sprites
     public Sprite dirt;
     public Sprite dryDirt;

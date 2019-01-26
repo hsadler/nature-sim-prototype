@@ -20,15 +20,12 @@ public class EnvironmentTileControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO:
-            // - set the neighbors
-
         // test: dynamically set sprite to random earth sprite
-        List<Sprite> earthSpriteList = EnvironmentSpriteList.instance.earthSpriteList;
-        Sprite randEarth = earthSpriteList[
-            Random.Range(0, earthSpriteList.Count)
-        ];
-        GetComponent<SpriteRenderer>().sprite = randEarth;
+        // List<Sprite> earthSpriteList = EnvironmentSpriteList.instance.earthSpriteList;
+        // Sprite randEarth = earthSpriteList[
+        //     Random.Range(0, earthSpriteList.Count)
+        // ];
+        // GetComponent<SpriteRenderer>().sprite = randEarth;
     }
 
     // Update is called once per frame
