@@ -7,16 +7,20 @@ public class EnvironmentGeneration : MonoBehaviour
     
     // RESPONSIBLE FOR PROCEDURAL ENVIRONMENT GENERATION
 
+
     // game object references
     public GameObject environmentTilePrefab;
     public GameObject environmentTileContainer;
     
+
     // script references
     private EnvironmentTiles eTiles;
+    
     
     // config
     public int tilesWidth;
     public int tilesHeight;
+    
     
     // static reference to the singleton instance
     public static EnvironmentGeneration instance { get; private set; }
@@ -24,20 +28,19 @@ public class EnvironmentGeneration : MonoBehaviour
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Awake()
-    {
+    void Awake() {
         // singleton pattern
         if(instance == null) {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
     }
 
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // set references
         eTiles = EnvironmentTiles.instance;
         // generate the map

@@ -7,8 +7,10 @@ public class EnvironmentTiles : MonoBehaviour
     
     // DATASTORE AND SERVICE FOR ENVIRONMENT TILES
 
+
     public IDictionary<string, GameObject> coordToEnvironmentTile = new Dictionary<string, GameObject>();
     public List<GameObject> environmentTiles = new List<GameObject>();
+    
     
     // the static reference to the singleton instance
     public static EnvironmentTiles instance { get; private set; }
@@ -16,16 +18,16 @@ public class EnvironmentTiles : MonoBehaviour
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Awake()
-    {
+    void Awake() {
         // singleton pattern
         if(instance == null) {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
     }
+
 
     public void SetNeighborsForTiles() {
         foreach (GameObject tile in environmentTiles)
