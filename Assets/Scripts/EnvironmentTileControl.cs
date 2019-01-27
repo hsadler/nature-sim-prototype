@@ -29,8 +29,13 @@ public class EnvironmentTileControl : MonoBehaviour
     public float minWater;
 
 
+    // game object references
+    public GameObject tileInfoText;
+
+
     // script references
     private EnvironmentSpriteList eSpriteList;
+    private GameObjectRegistry goRegistry;
 
     
     // Start is called before the first frame update
@@ -38,6 +43,7 @@ public class EnvironmentTileControl : MonoBehaviour
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
+        goRegistry = GameObjectRegistry.instance;
         
         // MOCK:
         InitMockState();
@@ -75,6 +81,14 @@ public class EnvironmentTileControl : MonoBehaviour
     void InitMockAppearance() {
         Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
         GetComponent<SpriteRenderer>().sprite = earthSprite;
+    }
+
+    /// <summary>
+    /// Called every frame while the mouse is over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseOver()
+    {
+        goRegistry.tileInfoText.GetComponent<TileInfoTextControl>().UpdateInfo(gameObject);
     }
 
 }
