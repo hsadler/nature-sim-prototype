@@ -6,7 +6,7 @@ V1:
     X create player character
     X create movable, zoomable camera
     X create environment tile state
-    - test proceedural generation of environment with different tile states
+    X test proceedural generation of environment with different tile states
     - create mouseover tile to show state
     - design tile visual changes to represent state
 

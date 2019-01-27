@@ -32,7 +32,8 @@ public class EnvironmentSpriteList : MonoBehaviour
 
     
     // sprite dict keyed by sprite name
-    public IDictionary<string, Sprite> nameToEnvironmentSprite = new Dictionary<string, Sprite>();
+    public IDictionary<string, Sprite> nameToEarthSprite = new Dictionary<string, Sprite>();
+    public IDictionary<string, Sprite> nameToWaterSprite = new Dictionary<string, Sprite>();
 
 
     // the static reference to the singleton instance
@@ -69,26 +70,36 @@ public class EnvironmentSpriteList : MonoBehaviour
         w.Add(water);
         w.Add(snow);
         w.Add(ice);
-        // assign sprites to dict keyed by name
-        IDictionary<string, Sprite> nts = nameToEnvironmentSprite;
-        nts.Add("DIRT", dirt);
-        nts.Add("DRY_DIRT", dryDirt);
-        nts.Add("ICE_DIRT", iceDirt);
-        nts.Add("GRASS", grass);
-        nts.Add("GRASS_PEBBLES", grassPebbles);
-        nts.Add("DRY_GRASS", dryGrass);
-        nts.Add("DRY_GRASS_MUSHROOMS", dryGrassMushrooms);
-        nts.Add("SAND", sand);
-        nts.Add("DRY_SAND", drySand);
-        nts.Add("WATER", water);
-        nts.Add("SNOW", snow);
-        nts.Add("ICE", ice);
+        // assign earth sprites to dict keyed by name
+        IDictionary<string, Sprite> ntes = nameToEarthSprite;
+        ntes.Add("DIRT", dirt);
+        ntes.Add("DRY_DIRT", dryDirt);
+        ntes.Add("ICE_DIRT", iceDirt);
+        ntes.Add("GRASS", grass);
+        ntes.Add("GRASS_PEBBLES", grassPebbles);
+        ntes.Add("DRY_GRASS", dryGrass);
+        ntes.Add("DRY_GRASS_MUSHROOMS", dryGrassMushrooms);
+        ntes.Add("SAND", sand);
+        ntes.Add("DRY_SAND", drySand);
+        // assign earth sprites to dict keyed by name
+        IDictionary<string, Sprite> ntws = nameToWaterSprite;
+        ntws.Add("WATER", water);
+        ntws.Add("SNOW", snow);
+        ntws.Add("ICE", ice);
     }
 
-    public Sprite GetSpriteByName(string name) {
+    public Sprite GetEarthSpriteByName(string name) {
         Sprite sprite = null;
-        if(nameToEnvironmentSprite.ContainsKey(name)) {
-            sprite = nameToEnvironmentSprite[name];
+        if(nameToEarthSprite.ContainsKey(name)) {
+            sprite = nameToEarthSprite[name];
+        }
+        return sprite;
+    }
+
+    public Sprite GetWaterSpriteByName(string name) {
+        Sprite sprite = null;
+        if(nameToWaterSprite.ContainsKey(name)) {
+            sprite = nameToWaterSprite[name];
         }
         return sprite;
     }

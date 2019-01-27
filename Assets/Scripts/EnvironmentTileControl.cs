@@ -20,6 +20,15 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject neighborLeft;
 
 
+    // config
+    public float maxElevation;
+    public float minElevation;
+    public float maxHeat;
+    public float minHeat;
+    public float maxWater;
+    public float minWater;
+
+
     // script references
     private EnvironmentSpriteList eSpriteList;
 
@@ -30,12 +39,13 @@ public class EnvironmentTileControl : MonoBehaviour
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
         
-        // InitState();
-        // SetAppearanceFromState();
-        
         // MOCK:
         InitMockState();
         InitMockAppearance();
+        
+        // REAL:
+        // InitState();
+        // SetAppearanceFromState();
 
     }
 
@@ -55,16 +65,16 @@ public class EnvironmentTileControl : MonoBehaviour
     
     // MOCK METHODS
     void InitMockState() {
-        // float rand
+        List<string> earthNames = new List<string>(eSpriteList.nameToEarthSprite.Keys);
+        earthType = earthNames[Random.Range(0, earthNames.Count)];
+        elevation = Random.Range(minElevation, maxElevation);
+        heat = Random.Range(minHeat, maxHeat);
+        water = Random.Range(minWater, maxWater);
     }
     
     void InitMockAppearance() {
-        // set sprite to random earth sprite
-        List<Sprite> earthSpriteList = EnvironmentSpriteList.instance.earthSpriteList;
-        Sprite randEarth = earthSpriteList[
-            Random.Range(0, earthSpriteList.Count)
-        ];
-        GetComponent<SpriteRenderer>().sprite = randEarth;
+        Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
+        GetComponent<SpriteRenderer>().sprite = earthSprite;
     }
 
 }
