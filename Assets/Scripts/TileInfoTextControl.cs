@@ -18,7 +18,6 @@ public class TileInfoTextControl : MonoBehaviour
     }
 
     public void UpdateInfo(GameObject tile) {
-        Debug.Log("updating info");
         EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
         string tileEarthTypeString = string.Format("Earth Type: {0}", tileControl.earthType);
         string tileElevationString = string.Format("Elevation: {0}", tileControl.elevation);

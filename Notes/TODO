@@ -7,8 +7,16 @@ V1:
     X create movable, zoomable camera
     X create environment tile state
     X test proceedural generation of environment with different tile states
-    - create mouseover tile to show state
-    - design tile visual changes to represent state
+    X create mouseover tile to show state
+    - make earth sprite reflect elevation (darker=low, bright=high)
+    - create water sprite transparent overlay (deeper = lower transparency)
+    - design tile visual changes to represent state:
+        - decide what visuals represet each state or combination of states
+        - decide what earth sprites to be used
+        - decide what water sprites to be used
+        - build water overlay for environment tile
+    - build flow systems for heat and water
+    - only visually render sprites in camera view
 
 V2:
     - add day/night cycle

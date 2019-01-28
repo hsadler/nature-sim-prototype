@@ -18,3 +18,10 @@ Dynamic natural forces:
     - geo activity:
         - alter elevation
         - change earth type
+
+
+Open Questions:
+    - do different earth/water types have different properties when interacting 
+        with other systems? Ex. light reflection, heat transfer coefficient, 
+        hardness (affect erosion), etc, etc.
+    

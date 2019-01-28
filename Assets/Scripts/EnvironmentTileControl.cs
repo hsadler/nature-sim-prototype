@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnvironmentTileControl : MonoBehaviour
 {
     
+
+    // HOLDS ENVIRONMENT TILE STATE AND SETS APPEARANCE
+
     
     // tile state properties
     public string earthType;
@@ -21,16 +24,14 @@ public class EnvironmentTileControl : MonoBehaviour
 
 
     // config
-    public float maxElevation;
-    public float minElevation;
-    public float maxHeat;
-    public float minHeat;
-    public float maxWater;
-    public float minWater;
+    private const float MIN_ELEVATION = 0;
+    private const float MIN_HEAT = 0;
+    private const float MIN_WATER = 0;
 
 
     // game object references
     public GameObject tileInfoText;
+    private GameObject highlightFrame;
 
 
     // script references
@@ -40,6 +41,9 @@ public class EnvironmentTileControl : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
+
+        // set game object references
+        highlightFrame = GameObject.FindWithTag("HighlightFrame");
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
@@ -73,9 +77,10 @@ public class EnvironmentTileControl : MonoBehaviour
     void InitMockState() {
         List<string> earthNames = new List<string>(eSpriteList.nameToEarthSprite.Keys);
         earthType = earthNames[Random.Range(0, earthNames.Count)];
-        elevation = Random.Range(minElevation, maxElevation);
-        heat = Random.Range(minHeat, maxHeat);
-        water = Random.Range(minWater, maxWater);
+        earthType = "DIRT";
+        elevation = Random.Range(MIN_ELEVATION, 100);
+        heat = Random.Range(MIN_HEAT, 100);
+        water = Random.Range(MIN_WATER, 100);
     }
     
     void InitMockAppearance() {
@@ -84,11 +89,27 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when the mouse enters the GUIElement or Collider.
+    /// </summary>
+    void OnMouseEnter()
+    {
+        highlightFrame.SetActive(true);
+    }
+
+    /// <summary>
     /// Called every frame while the mouse is over the GUIElement or Collider.
     /// </summary>
     void OnMouseOver()
     {
         goRegistry.tileInfoText.GetComponent<TileInfoTextControl>().UpdateInfo(gameObject);
+    }
+
+    /// <summary>
+    /// Called when the mouse is not any longer over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseExit()
+    {
+        highlightFrame.SetActive(false);   
     }
 
 }
