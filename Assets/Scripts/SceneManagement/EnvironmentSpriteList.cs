@@ -5,9 +5,20 @@ using UnityEngine;
 public class EnvironmentSpriteList : MonoBehaviour
 {
 
-    // SIMPLY HOLDS SPRITE TYPES FOR THE GAME ENVIRONMENT
+    // HOLDS SPRITE TYPES FOR THE GAME ENVIRONMENT
 
     
+    // environment earth names
+    public const string DIRT = "Dirt";
+    public const string DRY_DIRT = "Dry Dirt";
+    public const string ICE_DIRT = "Ice Dirt";
+    public const string GRASS = "Grass";
+    public const string GRASS_PEBBLES = "Grass Pebbles";
+    public const string DRY_GRASS = "Dry Grass";
+    public const string DRY_GRASS_MUSHROOMS = "Dry Grass Mushrooms";
+    public const string SAND = "Sand";
+    public const string DRY_SAND = "Dry Sand";
+
     // environment earth sprites
     public Sprite dirt;
     public Sprite dryDirt;
@@ -18,7 +29,12 @@ public class EnvironmentSpriteList : MonoBehaviour
     public Sprite dryGrassMushrooms;
     public Sprite sand;
     public Sprite drySand;
-    
+
+
+    // environment water names
+    public const string WATER = "Water";
+    public const string SNOW = "Snow"; 
+    public const string ICE = "Ice"; 
     
     // environment water sprites
     public Sprite water;
@@ -72,20 +88,20 @@ public class EnvironmentSpriteList : MonoBehaviour
         w.Add(ice);
         // assign earth sprites to dict keyed by name
         IDictionary<string, Sprite> ntes = nameToEarthSprite;
-        ntes.Add("DIRT", dirt);
-        ntes.Add("DRY_DIRT", dryDirt);
-        ntes.Add("ICE_DIRT", iceDirt);
-        ntes.Add("GRASS", grass);
-        ntes.Add("GRASS_PEBBLES", grassPebbles);
-        ntes.Add("DRY_GRASS", dryGrass);
-        ntes.Add("DRY_GRASS_MUSHROOMS", dryGrassMushrooms);
-        ntes.Add("SAND", sand);
-        ntes.Add("DRY_SAND", drySand);
+        ntes.Add(DIRT, dirt);
+        ntes.Add(DRY_DIRT, dryDirt);
+        ntes.Add(ICE_DIRT, iceDirt);
+        ntes.Add(GRASS, grass);
+        ntes.Add(GRASS_PEBBLES, grassPebbles);
+        ntes.Add(DRY_GRASS, dryGrass);
+        ntes.Add(DRY_GRASS_MUSHROOMS, dryGrassMushrooms);
+        ntes.Add(SAND, sand);
+        ntes.Add(DRY_SAND, drySand);
         // assign earth sprites to dict keyed by name
         IDictionary<string, Sprite> ntws = nameToWaterSprite;
-        ntws.Add("WATER", water);
-        ntws.Add("SNOW", snow);
-        ntws.Add("ICE", ice);
+        ntws.Add(WATER, water);
+        ntws.Add(SNOW, snow);
+        ntws.Add(ICE, ice);
     }
 
     public Sprite GetEarthSpriteByName(string name) {

@@ -27,6 +27,9 @@ public class EnvironmentTileControl : MonoBehaviour
     private const float MIN_ELEVATION = 0;
     private const float MIN_HEAT = 0;
     private const float MIN_WATER = 0;
+    private const float SAND_WATER_THRESHOLD = 20;
+    private const float DRY_DIRT_WATER_THRESHOLD = 40;
+    private const float DIRT_WATER_THRESHOLD = 60;
 
 
     // game object references
@@ -43,7 +46,7 @@ public class EnvironmentTileControl : MonoBehaviour
     void Start() {
 
         // set game object references
-        highlightFrame = GameObject.FindWithTag("HighlightFrame");
+        highlightFrame = transform.Find("HighlightFrame").gameObject;
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
@@ -51,11 +54,9 @@ public class EnvironmentTileControl : MonoBehaviour
         
         // MOCK:
         InitMockState();
-        InitMockAppearance();
         
         // REAL:
         // InitState();
-        // SetAppearanceFromState();
 
     }
 
@@ -69,24 +70,27 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     void SetAppearanceFromState() {
-        // TODO:
+        if(water < SAND_WATER_THRESHOLD) {
+            earthType = EnvironmentSpriteList.DRY_SAND;
+        } else if(water < DRY_DIRT_WATER_THRESHOLD) {
+            earthType = EnvironmentSpriteList.SAND;
+        } else if(water < DIRT_WATER_THRESHOLD) {
+            earthType = EnvironmentSpriteList.DRY_DIRT;
+        } else {
+            earthType = EnvironmentSpriteList.DIRT;
+        }
+        Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
+        GetComponent<SpriteRenderer>().sprite = earthSprite;
     }
 
     
     // MOCK METHODS
     void InitMockState() {
-        List<string> earthNames = new List<string>(eSpriteList.nameToEarthSprite.Keys);
-        earthType = earthNames[Random.Range(0, earthNames.Count)];
-        earthType = "DIRT";
-        elevation = Random.Range(MIN_ELEVATION, 100);
-        heat = Random.Range(MIN_HEAT, 100);
-        water = Random.Range(MIN_WATER, 100);
+        elevation = Random.Range(MIN_ELEVATION, 200);
+        heat = Random.Range(MIN_HEAT, 200);
+        water = Random.Range(MIN_WATER, 200);
     }
-    
-    void InitMockAppearance() {
-        Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
-        GetComponent<SpriteRenderer>().sprite = earthSprite;
-    }
+
 
     /// <summary>
     /// Called when the mouse enters the GUIElement or Collider.
