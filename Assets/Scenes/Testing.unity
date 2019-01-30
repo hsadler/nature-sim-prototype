@@ -576,8 +576,8 @@ MonoBehaviour:
   environmentTilePrefab: {fileID: 5538146844728269027, guid: 5bdb2067368017949bfcd52da204dc3f,
     type: 3}
   environmentTileContainer: {fileID: 1009099065}
-  tilesWidth: 50
-  tilesHeight: 50
+  tilesWidth: 10
+  tilesHeight: 10
 --- !u!4 &939354647
 Transform:
   m_ObjectHideFlags: 0

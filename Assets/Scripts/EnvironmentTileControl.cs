@@ -25,16 +25,24 @@ public class EnvironmentTileControl : MonoBehaviour
 
     // config
     private const float MIN_ELEVATION = 0;
+    private const float MAX_ELEVATION = 200;
     private const float MIN_HEAT = 0;
+    private const float MAX_HEAT = 200;
     private const float MIN_WATER = 0;
+    private const float MAX_WATER = 200;
+
     private const float SAND_WATER_THRESHOLD = 20;
     private const float DRY_DIRT_WATER_THRESHOLD = 40;
     private const float DIRT_WATER_THRESHOLD = 60;
+
+    private const float MIN_SHADOW_OVERLAY_ALPHA = 0;
+    private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;    
 
 
     // game object references
     public GameObject tileInfoText;
     private GameObject highlightFrame;
+    private GameObject shadowOverlay;
 
 
     // script references
@@ -47,6 +55,7 @@ public class EnvironmentTileControl : MonoBehaviour
 
         // set game object references
         highlightFrame = transform.Find("HighlightFrame").gameObject;
+        shadowOverlay = transform.Find("ShadowOverlay").gameObject;
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
@@ -70,6 +79,7 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     void SetAppearanceFromState() {
+        // set earth sprite based on water amount
         if(water < SAND_WATER_THRESHOLD) {
             earthType = EnvironmentSpriteList.DRY_SAND;
         } else if(water < DRY_DIRT_WATER_THRESHOLD) {
@@ -81,14 +91,19 @@ public class EnvironmentTileControl : MonoBehaviour
         }
         Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
         GetComponent<SpriteRenderer>().sprite = earthSprite;
+        // set shadow overlay based on elevation
+        float alphaRatio = 1 - (elevation / MAX_ELEVATION);
+        SpriteRenderer sr = shadowOverlay.GetComponent<SpriteRenderer>();
+        float alpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * alphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
     }
 
     
     // MOCK METHODS
     void InitMockState() {
-        elevation = Random.Range(MIN_ELEVATION, 200);
-        heat = Random.Range(MIN_HEAT, 200);
-        water = Random.Range(MIN_WATER, 200);
+        elevation = Random.Range(MIN_ELEVATION, MAX_ELEVATION);
+        heat = Random.Range(MIN_HEAT, MAX_HEAT);
+        water = Random.Range(MIN_WATER, MAX_WATER);
     }
 
 
