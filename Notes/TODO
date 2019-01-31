@@ -14,7 +14,8 @@ V1:
         X decide what water sprites to be used
     X make water amount translate to earth type
     X make earth elevation translate to shadow overlay (darker=low, bright=high)
-    - make water amount reflect water overlay transparency (deeper = lower transparency)
+    X make water amount reflect water overlay transparency (deeper = lower transparency)
+    - decide how to visually represet heat
     - build environment tile update system based on neighbors
     - build flow system for heat
     - build flow system for water

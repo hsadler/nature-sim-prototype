@@ -34,9 +34,12 @@ public class EnvironmentTileControl : MonoBehaviour
     private const float SAND_WATER_THRESHOLD = 20;
     private const float DRY_DIRT_WATER_THRESHOLD = 40;
     private const float DIRT_WATER_THRESHOLD = 60;
+    private const float STANDING_WATER_THRESHOLD = 80;
 
     private const float MIN_SHADOW_OVERLAY_ALPHA = 0;
-    private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;    
+    private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;
+    private const float MIN_WATER_OVERLAY_ALPHA = 0.1f;
+    private const float MAX_WATER_OVERLAY_ALPHA = 0.9f;
 
 
     // game object references
@@ -77,10 +80,15 @@ public class EnvironmentTileControl : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        // TODO: these updates may not need to be done every tick
+        // may want to do them per longer time intervals
         SetAppearanceFromState();    
     }
 
     void SetAppearanceFromState() {
+
+        // TODO: decompose this mofo 
+
         // set earth sprite based on water amount
         if(water < SAND_WATER_THRESHOLD) {
             earthType = EnvironmentSpriteList.DRY_SAND;
@@ -94,13 +102,27 @@ public class EnvironmentTileControl : MonoBehaviour
         Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
         GetComponent<SpriteRenderer>().sprite = earthSprite;
         // set shadow overlay transparency based on elevation
-        float alphaRatio = 1 - (elevation / MAX_ELEVATION);
-        float alpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * alphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
-        SpriteRenderer sr = shadowOverlay.GetComponent<SpriteRenderer>();
-        Color shadowColor = sr.color;
-        shadowColor.a = alpha;
-        sr.color = shadowColor;
-        // TODO: set water overlay tranparency based on water content
+        float shadowAlphaRatio = 1 - (elevation / MAX_ELEVATION);
+        float shadownAlpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * 
+            shadowAlphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
+        SpriteRenderer shadowSr = shadowOverlay.GetComponent<SpriteRenderer>();
+        Color shadowColor = shadowSr.color;
+        shadowColor.a = shadownAlpha;
+        shadowSr.color = shadowColor;
+        // set water overlay tranparency based on water content
+        SpriteRenderer waterSr = waterOverlay.GetComponent<SpriteRenderer>();
+        Color waterColor = waterSr.color;
+        float waterAlpha = 0;
+        if(water > STANDING_WATER_THRESHOLD) {
+            float waterToShow = water - STANDING_WATER_THRESHOLD;
+            float waterAlphaRatio = waterToShow / (MAX_WATER - STANDING_WATER_THRESHOLD);
+            waterAlpha = (MAX_WATER_OVERLAY_ALPHA - MIN_WATER_OVERLAY_ALPHA) * 
+                waterAlphaRatio + MIN_WATER_OVERLAY_ALPHA;
+        } else {
+            // not enough water to show overlay, leave alpha at 0
+        }
+        waterColor.a = waterAlpha;
+        waterSr.color = waterColor;
     }
 
     
