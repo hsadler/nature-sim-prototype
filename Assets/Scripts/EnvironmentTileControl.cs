@@ -43,6 +43,7 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject tileInfoText;
     private GameObject highlightFrame;
     private GameObject shadowOverlay;
+    private GameObject waterOverlay;
 
 
     // script references
@@ -56,6 +57,7 @@ public class EnvironmentTileControl : MonoBehaviour
         // set game object references
         highlightFrame = transform.Find("HighlightFrame").gameObject;
         shadowOverlay = transform.Find("ShadowOverlay").gameObject;
+        waterOverlay = transform.Find("WaterOverlay").gameObject;
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
@@ -91,11 +93,14 @@ public class EnvironmentTileControl : MonoBehaviour
         }
         Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
         GetComponent<SpriteRenderer>().sprite = earthSprite;
-        // set shadow overlay based on elevation
+        // set shadow overlay transparency based on elevation
         float alphaRatio = 1 - (elevation / MAX_ELEVATION);
-        SpriteRenderer sr = shadowOverlay.GetComponent<SpriteRenderer>();
         float alpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * alphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
+        SpriteRenderer sr = shadowOverlay.GetComponent<SpriteRenderer>();
+        Color shadowColor = sr.color;
+        shadowColor.a = alpha;
+        sr.color = shadowColor;
+        // TODO: set water overlay tranparency based on water content
     }
 
     
