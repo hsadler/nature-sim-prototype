@@ -83,13 +83,9 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        // TODO: these updates may not need to be done every tick
-        // may want to do them per longer time intervals
-        SetAppearanceFromState();    
-    }
+    void Update() {}
 
-    void SetAppearanceFromState() {
+    public void SetAppearanceFromState() {
         SetEarthAppearance();
         SetShadowAppearance();
         SetWaterAppearance();

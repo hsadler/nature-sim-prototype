@@ -28,6 +28,15 @@ public class EnvironmentTiles : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        InvokeRepeating("UpdateEnvironmentTiles", 0, 1);
+    }
+
 
     public void SetNeighborsForTiles() {
         foreach (GameObject tile in environmentTiles)
@@ -72,13 +81,34 @@ public class EnvironmentTiles : MonoBehaviour
         GameObject tile = null;
         string formattedCoords = GetFormattedCoordinateFromArray(coordinate);
         if(coordToEnvironmentTile.ContainsKey(formattedCoords)) {
-            // Debug.Log("tile found at coordinate " + formattedCoords);
             tile = coordToEnvironmentTile[formattedCoords];
         } else {
             // should only occur at the edges of the map
             Debug.Log("tile not found at coordinate x:" + coordinate[0] + " y:" + coordinate[1]);
         }
         return tile;
+    }
+
+
+    private void UpdateEnvironmentTiles() {
+        foreach (GameObject tile in environmentTiles) {
+            EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
+            // only update right and down neigbors so that neighbor relationships 
+            // are only evaluated once
+            GameObject rightN = tileControl.neighborRight;
+            UpdateTilesFromTileRelationship(tile, rightN);
+            GameObject downN = tileControl.neighborDown;
+            UpdateTilesFromTileRelationship(tile, downN);
+        }
+        foreach (GameObject tile in environmentTiles) {
+            EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
+            tileControl.SetAppearanceFromState();
+        }
+    }
+
+    private void UpdateTilesFromTileRelationship(GameObject tile1, GameObject tile2) {
+        // TODO
+        Debug.Log("updating from tile relationship");
     }
 
 }
