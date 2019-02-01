@@ -40,6 +40,8 @@ public class EnvironmentTileControl : MonoBehaviour
     private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;
     private const float MIN_WATER_OVERLAY_ALPHA = 0.1f;
     private const float MAX_WATER_OVERLAY_ALPHA = 0.9f;
+    private const float MIN_HEAT_OVERLAY_ALPHA = 0;
+    private const float MAX_HEAT_OVERLAY_ALPHA = 0.3f;
 
 
     // game object references
@@ -47,6 +49,7 @@ public class EnvironmentTileControl : MonoBehaviour
     private GameObject highlightFrame;
     private GameObject shadowOverlay;
     private GameObject waterOverlay;
+    private GameObject heatOverlay;
 
 
     // script references
@@ -61,6 +64,7 @@ public class EnvironmentTileControl : MonoBehaviour
         highlightFrame = transform.Find("HighlightFrame").gameObject;
         shadowOverlay = transform.Find("ShadowOverlay").gameObject;
         waterOverlay = transform.Find("WaterOverlay").gameObject;
+        heatOverlay = transform.Find("HeatOverlay").gameObject;
 
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
@@ -86,9 +90,13 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     void SetAppearanceFromState() {
+        SetEarthAppearance();
+        SetShadowAppearance();
+        SetWaterAppearance();
+        SetHeatAppearance();
+    }
 
-        // TODO: decompose this mofo 
-
+    private void SetEarthAppearance() {
         // set earth sprite based on water amount
         if(water < SAND_WATER_THRESHOLD) {
             earthType = EnvironmentSpriteList.DRY_SAND;
@@ -101,6 +109,9 @@ public class EnvironmentTileControl : MonoBehaviour
         }
         Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
         GetComponent<SpriteRenderer>().sprite = earthSprite;
+    }
+
+    private void SetShadowAppearance() {
         // set shadow overlay transparency based on elevation
         float shadowAlphaRatio = 1 - (elevation / MAX_ELEVATION);
         float shadownAlpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * 
@@ -109,7 +120,10 @@ public class EnvironmentTileControl : MonoBehaviour
         Color shadowColor = shadowSr.color;
         shadowColor.a = shadownAlpha;
         shadowSr.color = shadowColor;
-        // set water overlay tranparency based on water content
+    }
+
+    private void SetWaterAppearance() {
+        // set water overlay transparency based on water content
         SpriteRenderer waterSr = waterOverlay.GetComponent<SpriteRenderer>();
         Color waterColor = waterSr.color;
         float waterAlpha = 0;
@@ -123,6 +137,21 @@ public class EnvironmentTileControl : MonoBehaviour
         }
         waterColor.a = waterAlpha;
         waterSr.color = waterColor;
+    }
+
+    private void SetHeatAppearance() {
+
+        // TODO: this is a naive heat appearance implementation
+        // should appear cold as well as hot since cold is the absence of heat
+
+        // set heat overlay transparency based on heat
+        float heatAlphaRatio = heat / MAX_HEAT;
+        float shadownAlpha = (MAX_HEAT_OVERLAY_ALPHA - MIN_HEAT_OVERLAY_ALPHA) * 
+            heatAlphaRatio + MIN_HEAT_OVERLAY_ALPHA;
+        SpriteRenderer heatSr = heatOverlay.GetComponent<SpriteRenderer>();
+        Color heatColor = heatSr.color;
+        heatColor.a = shadownAlpha;
+        heatSr.color = heatColor;
     }
 
     
