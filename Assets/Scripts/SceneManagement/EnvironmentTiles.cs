@@ -108,7 +108,7 @@ public class EnvironmentTiles : MonoBehaviour
 
     private void UpdateTilesFromTileRelationship(GameObject tile1, GameObject tile2) {
         // TODO
-        Debug.Log("updating from tile relationship");
+        // Debug.Log("updating from tile relationship");
     }
 
 }

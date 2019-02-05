@@ -11,7 +11,7 @@ public class EnvironmentTileControl : MonoBehaviour
     
     // tile state properties
     public string earthType;
-    public float elevation;
+    public float earth;
     public float heat;
     public float water;
 
@@ -24,18 +24,27 @@ public class EnvironmentTileControl : MonoBehaviour
 
 
     // config
-    private const float MIN_ELEVATION = 0;
-    private const float MAX_ELEVATION = 200;
+
+    // min and max for state properties
+    private const float MIN_EARTH = 0;
+    private const float MAX_EARTH = 200;
     private const float MIN_HEAT = 0;
     private const float MAX_HEAT = 200;
     private const float MIN_WATER = 0;
     private const float MAX_WATER = 200;
 
+    // property flow coefficients
+    private const float EARTH_FLOW_COEFFICIENT = 0.1f;
+    private const float HEAT_FLOW_COEFFICIENT = 0.3f;
+    private const float WATER_FLOW_COEFFICIENT = 0.5f;
+
+    // water content thresholds for deriving earth type
     private const float SAND_WATER_THRESHOLD = 20;
     private const float DRY_DIRT_WATER_THRESHOLD = 40;
     private const float DIRT_WATER_THRESHOLD = 60;
     private const float STANDING_WATER_THRESHOLD = 80;
-
+    
+    // max and min transparencies for overlays
     private const float MIN_SHADOW_OVERLAY_ALPHA = 0;
     private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;
     private const float MIN_WATER_OVERLAY_ALPHA = 0.1f;
@@ -109,7 +118,7 @@ public class EnvironmentTileControl : MonoBehaviour
 
     private void SetShadowAppearance() {
         // set shadow overlay transparency based on elevation
-        float shadowAlphaRatio = 1 - (elevation / MAX_ELEVATION);
+        float shadowAlphaRatio = 1 - (earth / MAX_EARTH);
         float shadownAlpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * 
             shadowAlphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
         SpriteRenderer shadowSr = shadowOverlay.GetComponent<SpriteRenderer>();
@@ -153,7 +162,7 @@ public class EnvironmentTileControl : MonoBehaviour
     
     // MOCK METHODS
     void InitMockState() {
-        elevation = Random.Range(MIN_ELEVATION, MAX_ELEVATION);
+        earth = Random.Range(MIN_EARTH, MAX_EARTH);
         heat = Random.Range(MIN_HEAT, MAX_HEAT);
         water = Random.Range(MIN_WATER, MAX_WATER);
     }
@@ -182,5 +191,8 @@ public class EnvironmentTileControl : MonoBehaviour
     {
         highlightFrame.SetActive(false);   
     }
+
+    // flow coefficient getters
+    // TODO
 
 }
