@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnvironmentTiles : MonoBehaviour
 {
     
-    // DATASTORE AND SERVICE FOR ENVIRONMENT TILES
+    // DATASTORE AND SERVICE FOR INITIALIZING AND EVALUATING ENVIRONMENT TILES
 
+
+    public float tileEvaluationSpeed;
 
     public IDictionary<string, GameObject> coordToEnvironmentTile = new Dictionary<string, GameObject>();
     public List<GameObject> environmentTiles = new List<GameObject>();
@@ -34,7 +36,7 @@ public class EnvironmentTiles : MonoBehaviour
     /// </summary>
     void Start()
     {
-        InvokeRepeating("UpdateEnvironmentTiles", 0, 1);
+        InvokeRepeating("EvaluateEnvironmentTiles", 0, tileEvaluationSpeed);
     }
 
 
@@ -90,7 +92,7 @@ public class EnvironmentTiles : MonoBehaviour
     }
 
 
-    private void UpdateEnvironmentTiles() {
+    private void EvaluateEnvironmentTiles() {
         foreach (GameObject tile in environmentTiles) {
             EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
             // only update right and down neigbors so that neighbor relationships 
@@ -102,13 +104,22 @@ public class EnvironmentTiles : MonoBehaviour
         }
         foreach (GameObject tile in environmentTiles) {
             EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
+            tileControl.ApplyUpdateFromTempValues();
             tileControl.SetAppearanceFromState();
         }
     }
 
     private void UpdateTilesFromTileRelationship(GameObject tile1, GameObject tile2) {
-        // TODO
-        // Debug.Log("updating from tile relationship");
+        if(tile1 != null && tile2 != null) {
+            EnvironmentTileControl tile1Control = tile1.GetComponent<EnvironmentTileControl>();
+            EnvironmentTileControl tile2Control = tile2.GetComponent<EnvironmentTileControl>();
+            // calculate property transfer amounts
+            float tile1WaterTransfer = 1;
+            float tile2WaterTransfer = -tile1WaterTransfer;
+            // apply transfer amounts to temp props
+            tile1Control.updateWaterAmount = tile1WaterTransfer;
+            tile2Control.updateWaterAmount = tile2WaterTransfer;
+        }
     }
 
 }

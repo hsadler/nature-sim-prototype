@@ -16,6 +16,12 @@ public class EnvironmentTileControl : MonoBehaviour
     public float water;
 
     
+    // temp properties for keeping track of update values
+    public float updateEarthAmount;
+    public float updateHeatAmount;
+    public float updateWaterAmount;
+
+    
     // neighboring environment tiles
     public GameObject neighborUp;
     public GameObject neighborRight;
@@ -91,8 +97,14 @@ public class EnvironmentTileControl : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update() {}
+    public void ApplyUpdateFromTempValues() {
+        earth += updateEarthAmount;
+        updateEarthAmount = 0;
+        heat += updateHeatAmount;
+        updateHeatAmount = 0;
+        water += updateWaterAmount;
+        updateWaterAmount = 0;
+    }
 
     public void SetAppearanceFromState() {
         SetEarthAppearance();
@@ -193,6 +205,14 @@ public class EnvironmentTileControl : MonoBehaviour
     }
 
     // flow coefficient getters
-    // TODO
+    public float GetEarthFlowCoefficient() {
+        return EARTH_FLOW_COEFFICIENT;
+    }
+    public float GetHeatFlowCoefficient() {
+        return HEAT_FLOW_COEFFICIENT;
+    }
+    public float GetWaterFlowCoefficient() {
+        return WATER_FLOW_COEFFICIENT;
+    }
 
 }
