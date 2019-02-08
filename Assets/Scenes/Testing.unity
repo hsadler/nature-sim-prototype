@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941de5b8d4a0de244a6be7c8d4e270c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileEvaluationSpeed: 1
+  tileEvaluationSpeed: 0.1
   environmentTiles: []
 --- !u!1 &435624187
 GameObject:

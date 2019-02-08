@@ -215,4 +215,22 @@ public class EnvironmentTileControl : MonoBehaviour
         return WATER_FLOW_COEFFICIENT;
     }
 
+    // neighbors getters
+    public List<EnvironmentTileControl> GetTileNeighborsAsList() {
+        List<EnvironmentTileControl> neighbors = new List<EnvironmentTileControl>();
+        if(neighborUp != null) {
+            neighbors.Add(neighborUp.GetComponent<EnvironmentTileControl>());
+        }
+        if(neighborDown != null) {
+            neighbors.Add(neighborDown.GetComponent<EnvironmentTileControl>());
+        }
+        if(neighborLeft != null) {
+            neighbors.Add(neighborLeft.GetComponent<EnvironmentTileControl>());
+        }
+        if(neighborRight != null) {
+            neighbors.Add(neighborRight.GetComponent<EnvironmentTileControl>());
+        }
+        return neighbors;
+    } 
+
 }

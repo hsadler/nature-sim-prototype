@@ -95,12 +95,11 @@ public class EnvironmentTiles : MonoBehaviour
     private void EvaluateEnvironmentTiles() {
         foreach (GameObject tile in environmentTiles) {
             EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
-            // only update right and down neigbors so that neighbor relationships 
-            // are only evaluated once
-            GameObject rightN = tileControl.neighborRight;
-            UpdateTilesFromTileRelationship(tile, rightN);
-            GameObject downN = tileControl.neighborDown;
-            UpdateTilesFromTileRelationship(tile, downN);
+            // evaluate current tile and neighbors
+            EvaluateTileAndNeighbors(
+                tileControl,
+                tileControl.GetTileNeighborsAsList()
+            );
         }
         foreach (GameObject tile in environmentTiles) {
             EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
@@ -109,12 +108,44 @@ public class EnvironmentTiles : MonoBehaviour
         }
     }
 
+    private void EvaluateTileAndNeighbors(
+        EnvironmentTileControl mTileControl, 
+        List<EnvironmentTileControl> neighbors
+    ) {
+        int numNeighbors = neighbors.Count;
+        float waterFlowCoefficient = mTileControl.GetWaterFlowCoefficient();
+        float totalWaterDiff = 0;
+        foreach (EnvironmentTileControl nTileControl in neighbors) {
+            // calculate total water diff
+            if(mTileControl.water > nTileControl.water) {
+                float waterDiff = mTileControl.water - nTileControl.water;
+                totalWaterDiff += waterDiff;
+            }
+        }
+        // calculate total water available for transfer
+        float waterAvailForTransfer = ((totalWaterDiff/2)/numNeighbors) * waterFlowCoefficient;
+        foreach (EnvironmentTileControl nTileControl in neighbors) {
+            // calculate water trasfer amount and commit transfer
+            if(mTileControl.water > nTileControl.water) {
+                float waterDiff = mTileControl.water - nTileControl.water;
+                float waterToTransfer = waterDiff / (totalWaterDiff * waterAvailForTransfer);
+                nTileControl.updateWaterAmount += waterToTransfer;
+                mTileControl.updateWaterAmount -= waterToTransfer;
+            }
+        }
+    } 
+
+    // NOT USING
     private void UpdateTilesFromTileRelationship(GameObject tile1, GameObject tile2) {
         if(tile1 != null && tile2 != null) {
             EnvironmentTileControl tile1Control = tile1.GetComponent<EnvironmentTileControl>();
             EnvironmentTileControl tile2Control = tile2.GetComponent<EnvironmentTileControl>();
             // calculate property transfer amounts
-            float tile1WaterTransfer = 1;
+            float waterFlowCoefficient = Mathf.Min(
+                tile1Control.GetWaterFlowCoefficient(),
+                tile2Control.GetWaterFlowCoefficient()
+            );
+            float tile1WaterTransfer = waterFlowCoefficient * (tile1Control.water - tile2Control.water);
             float tile2WaterTransfer = -tile1WaterTransfer;
             // apply transfer amounts to temp props
             tile1Control.updateWaterAmount = tile1WaterTransfer;
