@@ -16,9 +16,9 @@ V1:
     X make earth elevation translate to shadow overlay (darker=low, bright=high)
     X make water amount reflect water overlay transparency (deeper = lower transparency)
     X visually represet heat
-    - build environment tile update system based on neighbors
-    - build flow system for heat
+    X build environment tile update system based on neighbors
     - build flow system for water
+    - build flow system for heat
     - only visually render sprites in camera view
     - build v1 environment generation algorithm
 

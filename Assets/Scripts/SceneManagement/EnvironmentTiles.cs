@@ -112,18 +112,20 @@ public class EnvironmentTiles : MonoBehaviour
         EnvironmentTileControl mTileControl, 
         List<EnvironmentTileControl> neighbors
     ) {
-        int numNeighbors = neighbors.Count;
         float waterFlowCoefficient = mTileControl.GetWaterFlowCoefficient();
+        // BUG: total water difference is incorrect and causing negative water amounts
         float totalWaterDiff = 0;
+        int participatingNeighbors = 0;
         foreach (EnvironmentTileControl nTileControl in neighbors) {
             // calculate total water diff
             if(mTileControl.water > nTileControl.water) {
                 float waterDiff = mTileControl.water - nTileControl.water;
                 totalWaterDiff += waterDiff;
+                participatingNeighbors += 1;
             }
         }
         // calculate total water available for transfer
-        float waterAvailForTransfer = ((totalWaterDiff/2)/numNeighbors) * waterFlowCoefficient;
+        float waterAvailForTransfer = ((totalWaterDiff/2)/participatingNeighbors) * waterFlowCoefficient;
         foreach (EnvironmentTileControl nTileControl in neighbors) {
             // calculate water trasfer amount and commit transfer
             if(mTileControl.water > nTileControl.water) {
