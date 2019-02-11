@@ -42,7 +42,7 @@ public class EnvironmentTileControl : MonoBehaviour
     // property flow coefficients
     private const float EARTH_FLOW_COEFFICIENT = 0.1f;
     private const float HEAT_FLOW_COEFFICIENT = 0.3f;
-    private const float WATER_FLOW_COEFFICIENT = 0.5f;
+    private const float WATER_FLOW_COEFFICIENT = 0.02f;
 
     // water content thresholds for deriving earth type
     private const float SAND_WATER_THRESHOLD = 20;
