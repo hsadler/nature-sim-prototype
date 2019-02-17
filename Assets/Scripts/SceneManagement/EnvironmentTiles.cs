@@ -112,11 +112,21 @@ public class EnvironmentTiles : MonoBehaviour
         EnvironmentTileControl mTileControl, 
         List<EnvironmentTileControl> neighbors
     ) {
+        // water
+        EvaluateTileAndNeighborsWater(mTileControl, neighbors);
+        // TODO: heat
+        // EvaluateTileAndNeighborsHeat(mTileControl, neighbors);
+    } 
+
+    private void EvaluateTileAndNeighborsWater(
+        EnvironmentTileControl mTileControl, 
+        List<EnvironmentTileControl> neighbors
+    ) {
         float waterFlowCoefficient = mTileControl.GetWaterFlowCoefficient();
         float totalWaterDiff = 0;
         int participatingNeighbors = 0;
         foreach (EnvironmentTileControl nTileControl in neighbors) {
-            // calculate total water diff
+            // calculate total water height diff
             if(mTileControl.water > nTileControl.water) {
                 float waterDiff = mTileControl.water - nTileControl.water;
                 totalWaterDiff += waterDiff;
@@ -157,7 +167,13 @@ public class EnvironmentTiles : MonoBehaviour
 
             }
         }
-    } 
+    }
 
+    private void EvaluateTileAndNeighborsHeat(
+        EnvironmentTileControl mTileControl, 
+        List<EnvironmentTileControl> neighbors
+    ) {
+        // TODO
+    }
 
 }
