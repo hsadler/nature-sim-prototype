@@ -127,8 +127,10 @@ public class EnvironmentTiles : MonoBehaviour
         int participatingNeighbors = 0;
         foreach (EnvironmentTileControl nTileControl in neighbors) {
             // calculate total water height diff
-            if(mTileControl.water > nTileControl.water) {
-                float waterDiff = mTileControl.water - nTileControl.water;
+            float mWaterHeight = mTileControl.earth + mTileControl.water;
+            float nWaterHeight = nTileControl.earth + nTileControl.water;
+            if(mTileControl.water > 0 && mWaterHeight > nWaterHeight) {
+                float waterDiff = mWaterHeight - nWaterHeight;
                 totalWaterDiff += waterDiff;
                 participatingNeighbors += 1;
             }
@@ -137,8 +139,10 @@ public class EnvironmentTiles : MonoBehaviour
         float waterAvailForTransfer = ((totalWaterDiff/2)/participatingNeighbors) * waterFlowCoefficient;
         foreach (EnvironmentTileControl nTileControl in neighbors) {
             // calculate water trasfer amount and commit transfer
-            if(mTileControl.water > nTileControl.water) {
-                float waterDiff = mTileControl.water - nTileControl.water;
+            float mWaterHeight = mTileControl.earth + mTileControl.water;
+            float nWaterHeight = nTileControl.earth + nTileControl.water;
+            if(mTileControl.water > 0 && mWaterHeight > nWaterHeight) {
+                float waterDiff = mWaterHeight - nWaterHeight;
                 float waterToTransfer = (waterDiff / totalWaterDiff) * waterAvailForTransfer;
                 nTileControl.updateWaterAmount += waterToTransfer;
                 mTileControl.updateWaterAmount -= waterToTransfer;
