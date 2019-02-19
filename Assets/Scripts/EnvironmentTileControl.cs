@@ -29,6 +29,7 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject neighborLeft;
 
 
+    // TODO: put this in a global config
     // config
 
     // min and max for state properties
@@ -74,27 +75,20 @@ public class EnvironmentTileControl : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
-
         // set game object references
         highlightFrame = transform.Find("HighlightFrame").gameObject;
         shadowOverlay = transform.Find("ShadowOverlay").gameObject;
         waterOverlay = transform.Find("WaterOverlay").gameObject;
         heatOverlay = transform.Find("HeatOverlay").gameObject;
-
         // set script references
         eSpriteList = EnvironmentSpriteList.instance;
         goRegistry = GameObjectRegistry.instance;
-        
-        // MOCK:
-        InitMockState();
-        
-        // REAL:
-        // InitState();
-
     }
 
-    void InitState() {
-        
+    public void InitState(float earth, float heat, float water) {
+        this.earth = earth;
+        this.heat = heat;
+        this.water = water;
     }
 
     public void ApplyUpdateFromTempValues() {
