@@ -8,18 +8,6 @@ public class EnvironmentGeneration : MonoBehaviour
     // RESPONSIBLE FOR PROCEDURAL ENVIRONMENT GENERATION
 
 
-    // TODO: put this in a global config
-    // config
-
-    // min and max for state properties
-    private const float MIN_EARTH = 0;
-    private const float MAX_EARTH = 200;
-    private const float MIN_HEAT = 0;
-    private const float MAX_HEAT = 200;
-    private const float MIN_WATER = 0;
-    private const float MAX_WATER = 200;
-
-
     // game object references
     public GameObject environmentTilePrefab;
     public GameObject environmentTileContainer;
@@ -27,11 +15,6 @@ public class EnvironmentGeneration : MonoBehaviour
 
     // script references
     private EnvironmentTiles eTiles;
-    
-    
-    // config
-    public int tilesWidth;
-    public int tilesHeight;
     
     
     // static reference to the singleton instance
@@ -61,8 +44,8 @@ public class EnvironmentGeneration : MonoBehaviour
     }
 
     void GenerateMap() {
-        int halfWidth = tilesWidth / 2;
-        int halfHeight = tilesHeight / 2;
+        int halfWidth = WorldSettings.instance.tilesWidth / 2;
+        int halfHeight = WorldSettings.instance.tilesHeight / 2;
         // proceedurally generate the game tiles
         for (int y = -halfHeight; y < halfHeight; y++)
         {
@@ -77,9 +60,9 @@ public class EnvironmentGeneration : MonoBehaviour
                     environmentTileContainer.transform
                 );
                 newTile.GetComponent<EnvironmentTileControl>().InitState(
-                    Random.Range(MIN_EARTH, MAX_EARTH),
-                    Random.Range(MIN_HEAT, MAX_HEAT),
-                    Random.Range(MIN_WATER, MAX_WATER)
+                    Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
+                    Random.Range(WorldSettings.MIN_HEAT, WorldSettings.MAX_HEAT),
+                    Random.Range(WorldSettings.MIN_WATER, WorldSettings.MAX_WATER)
                 );
                 // add to coordinates -> tile dictionary
                 string coordsKey = eTiles.GetFormattedCoordinateFromTile(newTile);

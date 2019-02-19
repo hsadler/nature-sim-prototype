@@ -20,11 +20,15 @@ V1:
     X build flow system for water
         X get basic water flow working
         X get water flow to take into account earth elevation
+    - create global config for game settings
+        X add initial values to config
+        - keep adding to this central config
     - create terrain configurations for testing
         - single slope
         - valley
         - hole
         - hill
+        - (possibly create terraforming tools)
     - build flow system for heat
     - only visually render sprites in camera view
     - build v1 environment generation algorithm

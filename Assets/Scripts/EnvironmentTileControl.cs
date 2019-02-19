@@ -28,18 +28,6 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject neighborDown;
     public GameObject neighborLeft;
 
-
-    // TODO: put this in a global config
-    // config
-
-    // min and max for state properties
-    private const float MIN_EARTH = 0;
-    private const float MAX_EARTH = 200;
-    private const float MIN_HEAT = 0;
-    private const float MAX_HEAT = 200;
-    private const float MIN_WATER = 0;
-    private const float MAX_WATER = 200;
-
     // property flow coefficients
     private const float EARTH_FLOW_COEFFICIENT = 0.1f;
     private const float HEAT_FLOW_COEFFICIENT = 0.3f;
@@ -124,7 +112,7 @@ public class EnvironmentTileControl : MonoBehaviour
 
     private void SetShadowAppearance() {
         // set shadow overlay transparency based on elevation
-        float shadowAlphaRatio = 1 - (earth / MAX_EARTH);
+        float shadowAlphaRatio = 1 - (earth / WorldSettings.MAX_EARTH);
         float shadownAlpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * 
             shadowAlphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
         SpriteRenderer shadowSr = shadowOverlay.GetComponent<SpriteRenderer>();
@@ -140,7 +128,7 @@ public class EnvironmentTileControl : MonoBehaviour
         float waterAlpha = 0;
         if(water > STANDING_WATER_THRESHOLD) {
             float waterToShow = water - STANDING_WATER_THRESHOLD;
-            float waterAlphaRatio = waterToShow / (MAX_WATER - STANDING_WATER_THRESHOLD);
+            float waterAlphaRatio = waterToShow / (WorldSettings.MAX_WATER - STANDING_WATER_THRESHOLD);
             waterAlpha = (MAX_WATER_OVERLAY_ALPHA - MIN_WATER_OVERLAY_ALPHA) * 
                 waterAlphaRatio + MIN_WATER_OVERLAY_ALPHA;
         } else {
@@ -156,7 +144,7 @@ public class EnvironmentTileControl : MonoBehaviour
         // should appear cold as well as hot since cold is the absence of heat
 
         // set heat overlay transparency based on heat
-        float heatAlphaRatio = heat / MAX_HEAT;
+        float heatAlphaRatio = heat / WorldSettings.MAX_HEAT;
         float shadownAlpha = (MAX_HEAT_OVERLAY_ALPHA - MIN_HEAT_OVERLAY_ALPHA) * 
             heatAlphaRatio + MIN_HEAT_OVERLAY_ALPHA;
         SpriteRenderer heatSr = heatOverlay.GetComponent<SpriteRenderer>();
@@ -164,15 +152,6 @@ public class EnvironmentTileControl : MonoBehaviour
         heatColor.a = shadownAlpha;
         heatSr.color = heatColor;
     }
-
-    
-    // MOCK METHODS
-    void InitMockState() {
-        earth = Random.Range(MIN_EARTH, MAX_EARTH);
-        heat = Random.Range(MIN_HEAT, MAX_HEAT);
-        water = Random.Range(MIN_WATER, MAX_WATER);
-    }
-
 
     /// <summary>
     /// Called when the mouse enters the GUIElement or Collider.

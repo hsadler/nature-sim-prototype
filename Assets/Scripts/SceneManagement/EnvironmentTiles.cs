@@ -36,7 +36,11 @@ public class EnvironmentTiles : MonoBehaviour
     /// </summary>
     void Start()
     {
-        InvokeRepeating("EvaluateEnvironmentTiles", 0, tileEvaluationSpeed);
+        InvokeRepeating(
+            "EvaluateEnvironmentTiles", 
+            0, 
+            WorldSettings.instance.tileEvaluationSpeed
+        );
     }
 
 
