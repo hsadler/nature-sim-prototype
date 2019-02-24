@@ -28,11 +28,7 @@ public class EnvironmentTileControl : MonoBehaviour
     public GameObject neighborDown;
     public GameObject neighborLeft;
 
-    // property flow coefficients
-    private const float EARTH_FLOW_COEFFICIENT = 0.1f;
-    private const float HEAT_FLOW_COEFFICIENT = 0.3f;
-    private const float WATER_FLOW_COEFFICIENT = 0.02f;
-
+    
     // water content thresholds for deriving earth type
     private const float SAND_WATER_THRESHOLD = 20;
     private const float DRY_DIRT_WATER_THRESHOLD = 40;
@@ -179,13 +175,13 @@ public class EnvironmentTileControl : MonoBehaviour
 
     // flow coefficient getters
     public float GetEarthFlowCoefficient() {
-        return EARTH_FLOW_COEFFICIENT;
+        return WorldSettings.EARTH_FLOW_COEFFICIENT;
     }
     public float GetHeatFlowCoefficient() {
-        return HEAT_FLOW_COEFFICIENT;
+        return WorldSettings.HEAT_FLOW_COEFFICIENT;
     }
     public float GetWaterFlowCoefficient() {
-        return WATER_FLOW_COEFFICIENT;
+        return WorldSettings.WATER_FLOW_COEFFICIENT;
     }
 
     // neighbors getters

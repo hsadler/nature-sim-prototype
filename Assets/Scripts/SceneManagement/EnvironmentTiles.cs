@@ -8,8 +8,6 @@ public class EnvironmentTiles : MonoBehaviour
     // DATASTORE AND SERVICE FOR INITIALIZING AND EVALUATING ENVIRONMENT TILES
 
 
-    public float tileEvaluationSpeed;
-
     public IDictionary<string, GameObject> coordToEnvironmentTile = new Dictionary<string, GameObject>();
     public List<GameObject> environmentTiles = new List<GameObject>();
     
@@ -152,7 +150,8 @@ public class EnvironmentTiles : MonoBehaviour
                 mTileControl.updateWaterAmount -= waterToTransfer;
 
                 // DEBUG: should never see water go below 0 or above limit
-                if (waterToTransfer + nTileControl.water < 0 || waterToTransfer + nTileControl.water > 200) {
+                bool printDebug = false;
+                if (printDebug && (waterToTransfer + nTileControl.water < 0 || waterToTransfer + nTileControl.water > 200)) {
                     Debug.LogFormat(
                         "=====================>"
                         + "\nmain tile x={0} y={1}\nneighbor tile x={2} y={3}"

@@ -19,6 +19,12 @@ public class WorldSettings : MonoBehaviour
     public const float MIN_WATER = 0;
     public const float MAX_WATER = 200;
 
+    
+    // flow coefficients
+    public const float EARTH_FLOW_COEFFICIENT = 0.1f;
+    public const float HEAT_FLOW_COEFFICIENT = 0.3f;
+    public const float WATER_FLOW_COEFFICIENT = 0.1f;
+
 
     // the static reference to the singleton instance
     public static WorldSettings instance { get; private set; }

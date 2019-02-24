@@ -20,15 +20,20 @@ public class TileInfoTextControl : MonoBehaviour
     public void UpdateInfo(GameObject tile) {
         EnvironmentTileControl tileControl = tile.GetComponent<EnvironmentTileControl>();
         string tileEarthTypeString = string.Format("Earth Type: {0}", tileControl.earthType);
-        string tileElevationString = string.Format("Elevation: {0}", tileControl.earth);
+        string tileEarthAmountString = string.Format("Earth Amount: {0}", tileControl.earth);
+        string tileWaterString = string.Format("Water Amount: {0}", tileControl.water);
+        string tileEarthPlusWaterString = string.Format(
+            "Water Level (Earth + Water): {0}", 
+            tileControl.earth + tileControl.water
+        );
         string tileHeatString = string.Format("Heat: {0}", tileControl.heat);
-        string tileWaterString = string.Format("Water: {0}", tileControl.water);
         text.text = string.Format(
-            "{0}\n{1}\n{2}\n{3}",
+            "{0}\n{1}\n{2}\n{3}\n{4}",
             tileEarthTypeString,
-            tileElevationString,
-            tileHeatString,
-            tileWaterString
+            tileEarthAmountString,
+            tileWaterString,
+            tileEarthPlusWaterString,
+            tileHeatString
         );
     }
 
