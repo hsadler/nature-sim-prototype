@@ -57,6 +57,14 @@ public class EnvironmentTiles : MonoBehaviour
         );
     }
 
+    public string GetFormattedCoordinateFromTile_NEW(GameObject tile) {
+        return string.Format(
+            "{0},{1}", 
+            tile.transform.position.x, 
+            tile.transform.position.z
+        );
+    }
+
     public string GetFormattedCoordinateFromArray(int[] coordinate) {
         return string.Format(
             "{0},{1}", 

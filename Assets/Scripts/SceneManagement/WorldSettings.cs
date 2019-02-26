@@ -13,11 +13,11 @@ public class WorldSettings : MonoBehaviour
 
     // min and max for environment tile state properties
     public const float MIN_EARTH = 0;
-    public const float MAX_EARTH = 200;
+    public const float MAX_EARTH = 100;
     public const float MIN_HEAT = 0;
-    public const float MAX_HEAT = 200;
+    public const float MAX_HEAT = 100;
     public const float MIN_WATER = 0;
-    public const float MAX_WATER = 200;
+    public const float MAX_WATER = 100;
 
     
     // flow coefficients

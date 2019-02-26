@@ -30,10 +30,10 @@ public class EnvironmentTileControl : MonoBehaviour
 
     
     // water content thresholds for deriving earth type
-    private const float SAND_WATER_THRESHOLD = 20;
-    private const float DRY_DIRT_WATER_THRESHOLD = 40;
-    private const float DIRT_WATER_THRESHOLD = 60;
-    private const float STANDING_WATER_THRESHOLD = 80;
+    private const float SAND_WATER_THRESHOLD = 10;
+    private const float DRY_DIRT_WATER_THRESHOLD = 20;
+    private const float DIRT_WATER_THRESHOLD = 40;
+    private const float STANDING_WATER_THRESHOLD = 40;
     
     // max and min transparencies for overlays
     private const float MIN_SHADOW_OVERLAY_ALPHA = 0;

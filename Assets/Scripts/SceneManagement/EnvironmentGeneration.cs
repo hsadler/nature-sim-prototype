@@ -39,7 +39,7 @@ public class EnvironmentGeneration : MonoBehaviour
         // set references
         eTiles = EnvironmentTiles.instance;
         // generate the map
-        GenerateMap();
+        GenerateMap2();
         eTiles.SetNeighborsForTiles();
     }
 
@@ -59,13 +59,61 @@ public class EnvironmentGeneration : MonoBehaviour
                     transform.rotation, 
                     environmentTileContainer.transform
                 );
+                
+                // TESTING: init tile with random property values
+                // newTile.GetComponent<EnvironmentTileControl>().InitState(
+                //     earth: Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
+                //     heat: Random.Range(WorldSettings.MIN_HEAT, WorldSettings.MAX_HEAT),
+                //     water: Random.Range(WorldSettings.MIN_WATER, WorldSettings.MAX_WATER)
+                // );
+
                 newTile.GetComponent<EnvironmentTileControl>().InitState(
-                    Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
-                    Random.Range(WorldSettings.MIN_HEAT, WorldSettings.MAX_HEAT),
-                    Random.Range(WorldSettings.MIN_WATER, WorldSettings.MAX_WATER)
+                    earth: Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
+                    heat: 0,
+                    water: 50
                 );
+
                 // add to coordinates -> tile dictionary
                 string coordsKey = eTiles.GetFormattedCoordinateFromTile(newTile);
+                eTiles.coordToEnvironmentTile.Add(coordsKey, newTile);
+                // add to tile list
+                eTiles.environmentTiles.Add(newTile); 
+            }
+        }
+    }
+
+    void GenerateMap2() {
+        int halfWidth = WorldSettings.instance.tilesWidth / 2;
+        int halfHeight = WorldSettings.instance.tilesHeight / 2;
+        // proceedurally generate the game tiles
+        for (int z = -halfHeight; z < halfHeight; z++)
+        {
+            for (int x = -halfWidth; x < halfWidth; x++)
+            {
+                // create environment tile
+                Vector3 position = new Vector3(x, 0, z);
+                GameObject newTile = Instantiate(
+                    environmentTilePrefab, 
+                    position, 
+                    transform.rotation, 
+                    environmentTileContainer.transform
+                );
+                
+                // TESTING: init tile with random property values
+                // newTile.GetComponent<EnvironmentTileControl>().InitState(
+                //     earth: Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
+                //     heat: Random.Range(WorldSettings.MIN_HEAT, WorldSettings.MAX_HEAT),
+                //     water: Random.Range(WorldSettings.MIN_WATER, WorldSettings.MAX_WATER)
+                // );
+
+                newTile.GetComponent<EnvironmentTileControl>().InitState(
+                    earth: Random.Range(WorldSettings.MIN_EARTH, WorldSettings.MAX_EARTH),
+                    heat: 0,
+                    water: 50
+                );
+
+                // add to coordinates -> tile dictionary
+                string coordsKey = eTiles.GetFormattedCoordinateFromTile_NEW(newTile);
                 eTiles.coordToEnvironmentTile.Add(coordsKey, newTile);
                 // add to tile list
                 eTiles.environmentTiles.Add(newTile); 
