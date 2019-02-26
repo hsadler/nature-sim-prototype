@@ -1,6 +1,9 @@
 
 TODO:
 
+REFACTOR:
+    - convert game to 3d
+
 V1:
     X test proceedural generation of environment tiles
     X create player character
