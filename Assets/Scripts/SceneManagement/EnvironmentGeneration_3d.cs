@@ -59,11 +59,12 @@ public class EnvironmentGeneration_3d : MonoBehaviour
                     transform.rotation, 
                     environmentTileContainer.transform
                 );
-                newTile.GetComponent<EnvironmentTileControl>().InitState(
-                    Random.Range(WorldSettings_3d.MIN_EARTH, WorldSettings_3d.MAX_EARTH),
-                    Random.Range(WorldSettings_3d.MIN_HEAT, WorldSettings_3d.MAX_HEAT),
-                    Random.Range(WorldSettings_3d.MIN_WATER, WorldSettings.MAX_WATER)
-                );
+                // TODO: uncomment when ready
+                // newTile.GetComponent<EnvironmentTileControl>().InitState(
+                //     Random.Range(WorldSettings_3d.MIN_EARTH, WorldSettings_3d.MAX_EARTH),
+                //     Random.Range(WorldSettings_3d.MIN_HEAT, WorldSettings_3d.MAX_HEAT),
+                //     Random.Range(WorldSettings_3d.MIN_WATER, WorldSettings.MAX_WATER)
+                // );
                 // add to coordinates -> tile dictionary
                 string coordsKey = eTiles.GetFormattedCoordinateFromTile(newTile);
                 eTiles.coordToEnvironmentTile.Add(coordsKey, newTile);

@@ -34,11 +34,12 @@ public class EnvironmentTiles_3d : MonoBehaviour
     /// </summary>
     void Start()
     {
-        InvokeRepeating(
-            "EvaluateEnvironmentTiles", 
-            0, 
-            WorldSettings_3d.instance.tileEvaluationSpeed
-        );
+        // TODO: uncomment when ready
+        // InvokeRepeating(
+        //     "EvaluateEnvironmentTiles", 
+        //     0, 
+        //     WorldSettings_3d.instance.tileEvaluationSpeed
+        // );
     }
 
 

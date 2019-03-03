@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 190948241}
   - component: {fileID: 190948240}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: TestFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &605232203
 Transform:
   m_ObjectHideFlags: 0
@@ -475,7 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1912312280b08344b43e772569d47bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentTilePrefab: {fileID: 0}
+  environmentTilePrefab: {fileID: 3519672593008970050, guid: d34109f77d0c33643870efa5dec0b1fe,
+    type: 3}
   environmentTileContainer: {fileID: 1650762741}
 --- !u!1 &879783493
 GameObject:
@@ -993,6 +994,7 @@ GameObject:
   - component: {fileID: 9072324713242162985}
   - component: {fileID: 9072324713242162999}
   - component: {fileID: 9072324713242162998}
+  - component: {fileID: 9072324713242162986}
   m_Layer: 5
   m_Name: TileInfoText
   m_TagString: Untagged
@@ -1019,6 +1021,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &9072324713242162986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072324713242162984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830cf1ae55e4340449e0b7493941534e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9072324713242162998
 MonoBehaviour:
   m_ObjectHideFlags: 0
