@@ -40,19 +40,20 @@ public class EnvironmentGeneration_3d : MonoBehaviour
         eTiles = EnvironmentTiles_3d.instance;
         // generate the map
         GenerateMap();
-        eTiles.SetNeighborsForTiles();
+        // TODO: uncomment when ready
+        // eTiles.SetNeighborsForTiles();
     }
 
     void GenerateMap() {
         int halfWidth = WorldSettings_3d.instance.tilesWidth / 2;
         int halfHeight = WorldSettings_3d.instance.tilesHeight / 2;
         // proceedurally generate the game tiles
-        for (int y = -halfHeight; y < halfHeight; y++)
+        for (int z = -halfHeight; z < halfHeight; z++)
         {
             for (int x = -halfWidth; x < halfWidth; x++)
             {
                 // create environment tile
-                Vector3 position = new Vector3(x, y, 0);
+                Vector3 position = new Vector3(x, 0, z);
                 GameObject newTile = Instantiate(
                     environmentTilePrefab, 
                     position, 

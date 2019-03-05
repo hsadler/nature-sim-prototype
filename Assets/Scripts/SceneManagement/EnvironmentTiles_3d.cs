@@ -44,8 +44,7 @@ public class EnvironmentTiles_3d : MonoBehaviour
 
 
     public void SetNeighborsForTiles() {
-        foreach (GameObject tile in environmentTiles)
-        {
+        foreach (GameObject tile in environmentTiles) {
            SetTileNeighbors(tile); 
         }
     }
@@ -54,7 +53,7 @@ public class EnvironmentTiles_3d : MonoBehaviour
         return string.Format(
             "{0},{1}", 
             tile.transform.position.x, 
-            tile.transform.position.y
+            tile.transform.position.z
         );
     }
 
@@ -70,7 +69,7 @@ public class EnvironmentTiles_3d : MonoBehaviour
         EnvironmentTileControl_3d tileControl = tile.GetComponent<EnvironmentTileControl_3d>();
         int[] tileCoord = {
             (int)tile.transform.position.x, 
-            (int)tile.transform.position.y
+            (int)tile.transform.position.z
         };
         int[] upCoord = {tileCoord[0], tileCoord[1] + 1};
         tileControl.neighborUp = GetTileAtCoordinate(upCoord);
@@ -162,9 +161,9 @@ public class EnvironmentTiles_3d : MonoBehaviour
                         + "\nlocal water diff: {7}"
                         + "\nlocal water to transfer: {8}",
                         mTileControl.gameObject.transform.position.x,
-                        mTileControl.gameObject.transform.position.y,
+                        mTileControl.gameObject.transform.position.z,
                         nTileControl.gameObject.transform.position.x,
-                        nTileControl.gameObject.transform.position.y,
+                        nTileControl.gameObject.transform.position.z,
                         participatingNeighbors,
                         totalWaterDiff,
                         waterAvailForTransfer,
