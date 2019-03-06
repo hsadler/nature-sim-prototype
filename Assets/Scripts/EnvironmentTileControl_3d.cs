@@ -53,20 +53,27 @@ public class EnvironmentTileControl_3d : MonoBehaviour
 
 
     // script references
-    private EnvironmentSpriteList eSpriteList;
-    private GameObjectRegistry goRegistry;
+    private EnvironmentSpriteList_3d eSpriteList;
+    private GameObjectRegistry_3d goRegistry;
 
     
     // Start is called before the first frame update
     void Start() {
+        
         // set game object references
-        highlightFrame = transform.Find("HighlightFrame").gameObject;
-        shadowOverlay = transform.Find("ShadowOverlay").gameObject;
-        waterOverlay = transform.Find("WaterOverlay").gameObject;
-        heatOverlay = transform.Find("HeatOverlay").gameObject;
+
+        // TODO: uncomment when ready
+        // highlightFrame = transform.Find("HighlightFrame").gameObject;
+        // shadowOverlay = transform.Find("ShadowOverlay").gameObject;
+        // waterOverlay = transform.Find("WaterOverlay").gameObject;
+        // heatOverlay = transform.Find("HeatOverlay").gameObject;
+        
         // set script references
-        eSpriteList = EnvironmentSpriteList.instance;
-        goRegistry = GameObjectRegistry.instance;
+        
+        // TODO: uncomment when ready
+        // eSpriteList = EnvironmentSpriteList.instance;
+        
+        goRegistry = GameObjectRegistry_3d.instance;
     }
 
     public void InitState(float earth, float heat, float water) {
@@ -154,15 +161,8 @@ public class EnvironmentTileControl_3d : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        highlightFrame.SetActive(true);
-    }
-
-    /// <summary>
-    /// Called every frame while the mouse is over the GUIElement or Collider.
-    /// </summary>
-    void OnMouseOver()
-    {
-        goRegistry.tileInfoText.GetComponent<TileInfoTextControl>().UpdateInfo(gameObject);
+        // TODO: uncomment when ready
+        // highlightFrame.SetActive(true);
     }
 
     /// <summary>
@@ -170,7 +170,16 @@ public class EnvironmentTileControl_3d : MonoBehaviour
     /// </summary>
     void OnMouseExit()
     {
-        highlightFrame.SetActive(false);   
+        // TODO: uncomment when ready
+        // highlightFrame.SetActive(false);   
+    }
+
+    /// <summary>
+    /// Called every frame while the mouse is over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseOver()
+    {
+        goRegistry.tileInfoText.GetComponent<TileInfoTextControl_3d>().UpdateInfo(gameObject);
     }
 
     // flow coefficient getters
