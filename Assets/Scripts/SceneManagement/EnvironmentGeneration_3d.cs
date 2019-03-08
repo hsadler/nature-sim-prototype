@@ -63,7 +63,7 @@ public class EnvironmentGeneration_3d : MonoBehaviour
                 newTile.GetComponent<EnvironmentTileControl_3d>().InitState(
                     Random.Range(WorldSettings_3d.MIN_EARTH, WorldSettings_3d.MAX_EARTH),
                     Random.Range(WorldSettings_3d.MIN_HEAT, WorldSettings_3d.MAX_HEAT),
-                    Random.Range(WorldSettings_3d.MIN_WATER, WorldSettings.MAX_WATER)
+                    Random.Range(WorldSettings_3d.MIN_WATER, WorldSettings_3d.MAX_WATER)
                 );
                 // add to coordinates -> tile dictionary
                 string coordsKey = eTiles.GetFormattedCoordinateFromTile(newTile);

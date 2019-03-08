@@ -28,21 +28,6 @@ public class EnvironmentTileControl_3d : MonoBehaviour
     public GameObject neighborDown;
     public GameObject neighborLeft;
 
-    
-    // water content thresholds for deriving earth type
-    // private const float SAND_WATER_THRESHOLD = 20;
-    // private const float DRY_DIRT_WATER_THRESHOLD = 40;
-    // private const float DIRT_WATER_THRESHOLD = 60;
-    // private const float STANDING_WATER_THRESHOLD = 80;
-    
-    // max and min transparencies for overlays
-    // private const float MIN_SHADOW_OVERLAY_ALPHA = 0;
-    // private const float MAX_SHADOW_OVERLAY_ALPHA = 0.65f;
-    // private const float MIN_WATER_OVERLAY_ALPHA = 0.1f;
-    // private const float MAX_WATER_OVERLAY_ALPHA = 0.9f;
-    // private const float MIN_HEAT_OVERLAY_ALPHA = 0;
-    // private const float MAX_HEAT_OVERLAY_ALPHA = 0.3f;
-
 
     // game object references
     public GameObject tileInfoText;
@@ -82,10 +67,10 @@ public class EnvironmentTileControl_3d : MonoBehaviour
     public void SetAppearanceFromState() {
         SetEarthPolyAppearance();
         SetWaterPolyAppearance();
-
     }
 
     private void SetEarthPolyAppearance() {
+        // set scale
         float newHeight = (earth / WorldSettings.MAX_EARTH) * WorldSettings.MAX_EARTH;
         Vector3 tempScale = earthPoly.transform.localScale;
         earthPoly.transform.localScale = new Vector3(
@@ -93,66 +78,33 @@ public class EnvironmentTileControl_3d : MonoBehaviour
             newHeight,
             tempScale[2]
         );
+        // set position
+        float newPositionY = newHeight / 2;
+        Vector3 tempPosition = earthPoly.transform.position;
+        earthPoly.transform.position = new Vector3(
+            tempPosition[0],
+            newPositionY,
+            tempPosition[2]
+        );
     }
-    private void SetWaterPolyAppearance() {}
-
-    // private void SetEarthAppearance() {
-    //     // set earth sprite based on water amount
-    //     if(water < SAND_WATER_THRESHOLD) {
-    //         earthType = EnvironmentSpriteList.DRY_SAND;
-    //     } else if(water < DRY_DIRT_WATER_THRESHOLD) {
-    //         earthType = EnvironmentSpriteList.SAND;
-    //     } else if(water < DIRT_WATER_THRESHOLD) {
-    //         earthType = EnvironmentSpriteList.DRY_DIRT;
-    //     } else {
-    //         earthType = EnvironmentSpriteList.DIRT;
-    //     }
-    //     Sprite earthSprite = eSpriteList.GetEarthSpriteByName(earthType);
-    //     GetComponent<SpriteRenderer>().sprite = earthSprite;
-    // }
-
-    // private void SetShadowAppearance() {
-    //     // set shadow overlay transparency based on elevation
-    //     float shadowAlphaRatio = 1 - (earth / WorldSettings.MAX_EARTH);
-    //     float shadownAlpha = (MAX_SHADOW_OVERLAY_ALPHA - MIN_SHADOW_OVERLAY_ALPHA) * 
-    //         shadowAlphaRatio + MIN_SHADOW_OVERLAY_ALPHA;
-    //     SpriteRenderer shadowSr = shadowOverlay.GetComponent<SpriteRenderer>();
-    //     Color shadowColor = shadowSr.color;
-    //     shadowColor.a = shadownAlpha;
-    //     shadowSr.color = shadowColor;
-    // }
-
-    // private void SetWaterAppearance() {
-    //     // set water overlay transparency based on water content
-    //     SpriteRenderer waterSr = waterOverlay.GetComponent<SpriteRenderer>();
-    //     Color waterColor = waterSr.color;
-    //     float waterAlpha = 0;
-    //     if(water > STANDING_WATER_THRESHOLD) {
-    //         float waterToShow = water - STANDING_WATER_THRESHOLD;
-    //         float waterAlphaRatio = waterToShow / (WorldSettings.MAX_WATER - STANDING_WATER_THRESHOLD);
-    //         waterAlpha = (MAX_WATER_OVERLAY_ALPHA - MIN_WATER_OVERLAY_ALPHA) * 
-    //             waterAlphaRatio + MIN_WATER_OVERLAY_ALPHA;
-    //     } else {
-    //         // not enough water to show overlay, leave alpha at 0
-    //     }
-    //     waterColor.a = waterAlpha;
-    //     waterSr.color = waterColor;
-    // }
-
-    // private void SetHeatAppearance() {
-
-    //     // TODO: this is a naive heat appearance implementation
-    //     // should appear cold as well as hot since cold is the absence of heat
-
-    //     // set heat overlay transparency based on heat
-    //     float heatAlphaRatio = heat / WorldSettings.MAX_HEAT;
-    //     float shadownAlpha = (MAX_HEAT_OVERLAY_ALPHA - MIN_HEAT_OVERLAY_ALPHA) * 
-    //         heatAlphaRatio + MIN_HEAT_OVERLAY_ALPHA;
-    //     SpriteRenderer heatSr = heatOverlay.GetComponent<SpriteRenderer>();
-    //     Color heatColor = heatSr.color;
-    //     heatColor.a = shadownAlpha;
-    //     heatSr.color = heatColor;
-    // }
+    private void SetWaterPolyAppearance() {
+        // set scale
+        float newHeight = (water / WorldSettings.MAX_WATER) * WorldSettings.MAX_WATER;
+        Vector3 tempScale = waterPoly.transform.localScale;
+        waterPoly.transform.localScale = new Vector3(
+            tempScale[0],
+            newHeight,
+            tempScale[2]
+        );
+        // set position
+        float newPositionY = earthPoly.transform.position.y + (earthPoly.transform.localScale.y / 2) + newHeight / 2;
+        Vector3 tempPosition = waterPoly.transform.position;
+        waterPoly.transform.position = new Vector3(
+            tempPosition[0],
+            newPositionY,
+            tempPosition[2]
+        );
+    }
 
     /// <summary>
     /// Called when the mouse enters the GUIElement or Collider.
