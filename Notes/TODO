@@ -2,12 +2,13 @@
 TODO:
 
 REFACTOR GAME TO 3D:
-    - make new scene and repurpose 3d version scripts
-    - convert environment tile prefab
+    X make new scene and repurpose 3d version scripts
+    X convert environment tile prefab
         - give height
         - convert to non-sprite
+    X convert scene management scripts 
+    - add start screen and transitions from 2d and 3d demos
     - convert player camera
-    - convert scene management scripts 
 
 V1:
     X test proceedural generation of environment tiles
